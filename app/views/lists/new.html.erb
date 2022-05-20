@@ -1,0 +1,9 @@
+<h1>::NEW LIST::</h1>
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
+
+<div class= "d-flex justify-content-center">
+  <div> <%= link_to "ALL LISTS", lists_path %> </div>
+</div>
