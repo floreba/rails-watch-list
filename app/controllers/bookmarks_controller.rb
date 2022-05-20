@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bokmark, only: [:create]
+  before_action :set_bookmark_id, only: [:show]
 
   def new
     @list = List.find(params[:list_id])
@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @list = List.find(params[:id])
+    @list = List.find(params[:list_id])
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list = @list
     redirect_to list_path(@list)
@@ -15,11 +15,11 @@ class BookmarksController < ApplicationController
 
   private
 
-  def set_bokmark_id
+  def set_bookmark_id
     @bookmark = Bookmark.find(params[:id])
   end
 
   def bookmark_params
-    params.permit(:comment)
+    params.require(:bookmark).permit(:comment) #, miovue id
   end
 end
